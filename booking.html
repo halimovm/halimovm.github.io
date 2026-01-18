@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Забти вақт | Barber Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #121212; color: white; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-box { background: #1e1e1e; padding: 30px; border-radius: 15px; border: 1px solid #d4af37; width: 350px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #2b2b2b; color: white; box-sizing: border-box; font-size: 16px; }
+        .btn-send { width: 100%; padding: 12px; background: #d4af37; border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s; font-size: 16px; margin-top: 10px; }
+        .btn-send:hover { background: #fff; transform: scale(1.02); }
+        h2 { color: #d4af37; text-align: center; margin-top: 0; font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2>Банд кардани вақт</h2>
+    <form id="tgForm">
+        <input type="text" id="name" placeholder="Номи шумо" required>
+        <input type="tel" id="phone" placeholder="Рақами телефон" required>
+        <select id="service">
+            <option>Мӯйтарошӣ</option>
+            <option>Ороиши риш</option>
+            <option>Full Service (Royal)</option>
+        </select>
+        <input type="datetime-local" id="date" required>
+        <button type="submit" id="submitBtn" class="btn-send">ТАСДИҚ КАРДАН</button>
+    </form>
+    <div id="status" style="margin-top: 15px; text-align: center; display: none; color: #00ff00; font-weight: bold;">✅ Паём ба усто фиристода шуд!</div>
+</div>
+
+<script>
+    // Танзимоти боти ту
+    const token = "7776337347:AAHjobLDR306MxVY6KWrLeaGM7OKu3U547U";
+    const chat_id = "6388849256"; 
+
+    document.getElementById('tgForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "Фиристода истодаам...";
+        btn.disabled = true;
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('date').value;
+
+        // Формати паём (HTML format)
+        const message = `🚀 <b>Навбати нав!</b>\n\n👤 <b>Ном:</b> ${name}\n📞 <b>Тел:</b> ${phone}\n✂️ <b>Хизмат:</b> ${service}\n📅 <b>Вақт:</b> ${date}`;
+
+        const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}&parse_mode=html`;
+
+        fetch(url)
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('status').style.display = 'block';
+                    document.getElementById('tgForm').reset();
+                    setTimeout(() => {
+                        window.location.href = "barber.html"; 
+                    }, 2500);
+                } else {
+                    response.json().then(data => {
+                        alert("Хатогии Telegram: " + data.description);
+                        btn.innerText = "ТАСДИҚ КАРДАН";
+                        btn.disabled = false;
+                    });
+                }
+            })
+            .catch(error => {
+                alert("Хатогии Интернет: " + error);
+                btn.innerText = "ТАСДИҚ КАРДАН";
+                btn.disabled = false;
+            });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+:root {
+    --primary: #d4af37; /* Ранги тиллоӣ */
+    --dark: #121212;
+    --light: #ffffff;
+    --gray: #252525;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--primary);
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.btn-book {
+    padding: 15px 40px;
+    background-color: var(--primary);
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.btn-book:hover {
+    background-color: white;
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* Sections */
+.section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--gray);
+    padding: 30px;
+    border-bottom: 4px solid var(--primary);
+    transition: 0.4s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: #333;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+.contact-box {
+    background: var(--primary);
+    color: black;
+    padding: 50px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+}
